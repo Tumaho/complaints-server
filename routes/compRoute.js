@@ -1,10 +1,13 @@
 const router = require('express').Router();
 const comp = require('../models/comp');
 const jwt = require('jsonwebtoken');
+
+// body parser to read the body data 
 var bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
 
+// Create new complaint
 router.post('/', (req, res) => {
     const token = req.header('auth-token');
     const decoded = jwt.verify(token, "secret");
@@ -33,6 +36,7 @@ router.post('/', (req, res) => {
     }
 })
 
+// Get all complaint
 router.get('/', async (req, res) => {
 
     const token = req.header('auth-token');
@@ -54,6 +58,7 @@ router.get('/', async (req, res) => {
 })
 
 
+// Get complaints by user id
 router.get('/:id', async (req, res) => {
     const token = req.header('auth-token');
     const decoded = jwt.verify(token, "secret");
@@ -81,6 +86,7 @@ router.get('/:id', async (req, res) => {
 })
 
 
+// update complaint status
 router.put('/', async (req, res) => {
     const token = req.header('auth-token');
     const decoded = jwt.verify(token, "secret");
@@ -99,6 +105,7 @@ router.put('/', async (req, res) => {
     }
 })
 
+// delete complaint
 router.delete('/:id', async (req, res) => {
     const token = req.header('auth-token');
     const decoded = jwt.verify(token, "secret");
