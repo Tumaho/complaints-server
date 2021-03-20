@@ -110,9 +110,12 @@ router.delete('/:id', async (req, res) => {
     const token = req.header('auth-token');
     const decoded = jwt.verify(token, "secret");
     var userRole = decoded.role
-    var userId = decoded._id;
+    var userId = decoded.id;
 
-    if (userRole == "Admin" || userId != req.params.id) {
+    const findComp = await comp.findOne({ _id: req.params.id });
+    
+    
+    if (userRole == "Admin" || userId !== findComp.createrId) {
         res.status(400).send("Unauthorized!");
     }
     else {
