@@ -5,6 +5,7 @@ const bodyparser = require('body-parser');
 
 const app = express();
 
+// use cors to avoid CORS problems
 app.use(cors())
 
 
@@ -15,15 +16,6 @@ const compRoutes = require('./routes/compRoute');
 
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(bodyparser.json());
-
-
-app.get('/', (req, res) => {
-    res.json({
-        estado: true,
-        mensaje: 'funciona!'
-    })
-});
-
 
 
 // route middlewares

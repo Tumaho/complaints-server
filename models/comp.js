@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Complaint Schema
+
 const compSchema = mongoose.Schema({
     descreption: {
         type: String,
